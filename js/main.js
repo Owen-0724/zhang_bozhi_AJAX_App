@@ -5,6 +5,51 @@
   const materialTemplate = document.querySelector("#material-template");
   const materialList = document.querySelector("#material-list");
 
+  const loader = document.querySelector("#loader");
+
+  function getData (){
+    loader.classList.toggle("hidden");
+    fetch("https://swiftpixel.com/earbud/api/infoboxes")
+        .then(response => response.json())
+        .then(people => {
+            console.log(people);
+
+            // const ul = document.createElement("ul");
+            // ul.id = "people-list";
+
+            // people.results.forEach(result => {
+            //     const li = document.createElement("li");
+            //     const img = document.createElement("img");
+            //     img.src = result.picture.thumbnail;
+
+            //     const h3 = document.createElement("h2");
+            //     h3.textContent = `${result.name.first} ${result.name.last}`;
+
+            //     const p = document.createElement("p");
+            //     p.textContent = result.email;
+
+            //     const tal = document.createElement("p");
+            //     tal.textContent = result.cell;
+
+            //     li.appendChild(img);
+            //     li.appendChild(h3);
+            //     li.appendChild(p);
+            //     li.appendChild(tal);
+            //     ul.appendChild(li);
+            // });
+            loader.classList.toggle("hidden");
+            // peopleCon.innerHTML = "";
+            // peopleCon.appendChild(ul);
+        })
+        .catch(error => {
+            console.log(error);
+            const errorMessage = document.createElement("p");
+            errorMessage.textContent = "Something went wrong, Please check your network and try again";
+            // peopleCon.appendChild(errorMessage);
+        })
+}
+
+getData();
   //This information needs to be removed then pulled with an AJAX Call using the Fetch API
   //this is the api url https://swiftpixel.com/earbud/api/infoboxes"
 
